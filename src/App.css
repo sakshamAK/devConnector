@@ -122,8 +122,8 @@ img {
 .my-2 {
   margin: 2rem 0;
 }
-.my-3 {
-  margin: 3rem 0;
+.my-4 {
+  margin: 4rem 0;
 }
 
 .btn {
@@ -300,11 +300,6 @@ button {
 .table th {
   background: var(--light-color);
 }
-
-/* Navbar */
-
-/* Landing Page */
-
 
 /* Profiles Page */
 .profile {
