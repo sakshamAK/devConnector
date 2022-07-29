@@ -1,11 +1,9 @@
 
 export const Dashboard = () => {
-    
-    return (<>
-        <h1 className = "large text-primary" style = {{marginTop: '100px'}}>Dashboard</h1>
-        <p className = "lead">
-            <i className = "fas fa-user">{' '}</i> 
-            Welcome User
-        </p>
-        </>)
+
+    return (
+        <div className = "my-4 py-1 px-2">
+            <h1>heelo</h1>
+        </div>
+    )
 }
