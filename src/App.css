@@ -100,6 +100,13 @@ img {
   padding: 3rem 0;
 }
 
+<<<<<<< Updated upstream
+=======
+.px-2 {
+  padding: 0 2rem;
+}
+
+>>>>>>> Stashed changes
 /* Margin */
 .m {
   margin: 0.5rem;

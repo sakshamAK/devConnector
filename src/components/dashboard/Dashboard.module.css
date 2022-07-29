@@ -1,0 +1,21 @@
+.dashboard-container {
+    display: grid;
+    grid-template-areas: "sidemenu feed suggestions";
+    grid-template-columns: auto auto auto;
+    text-align: center;
+}
+
+.sideNav {
+    grid-area: sidemenu;
+}
+
+.suggestions {
+    grid-area: suggestions;
+}
+
+.user-feed {
+    display: flex;
+    grid-area: feed;
+    flex-direction: column;
+    align-items: center;
+}
