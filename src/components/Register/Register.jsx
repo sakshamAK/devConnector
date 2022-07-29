@@ -15,19 +15,19 @@ export const Register = () => {
         </p>
         <div className="form">
           <div className="form-group">
-            <label for = "username">Username:</label>
+            <label htmlFor = "username">Username:</label>
             <input type="text" placeholder="Username" name="username" value = { username } onChange = { e => setUsername(e.target.value) } required />
           </div>
           <div className="form-group">
-            <label for = "email">email:</label>
+            <label htmlFor = "email">email:</label>
             <input type="email" placeholder="email" name="email" required />
           </div>
           <div className="form-group">
-            <label for = "password">Password</label>
+            <label htmlFor = "password">Password</label>
             <input type="password" placeholder="Password" name="password" minLength="6" value = { registerPassword } onChange = { e => setRegisterPassword(e.target.value) } />
           </div>
           <div className="form-group">
-            <label for = "password">Re-enter Password</label>
+            <label htmlFor = "password">Re-enter Password</label>
             <input type="password" placeholder="Password" name="password" minLength="6" value = { rePassword } onChange = { e => setRePassword(e.target.value) } />
             { togglePassMsg && <small>Passwords do not match</small> }
           </div>

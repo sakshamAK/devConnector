@@ -1,0 +1,25 @@
+.post-container {
+    background-color: var(--light-color);
+    padding: 1rem;
+    width: 100%;
+}
+
+.write-post {
+    background-color: #fff;
+    outline: none;
+    border: none;
+    width: 100%;
+}
+
+.add-to-post {
+    display: flex;
+    gap: 1rem;
+}
+
+.add-to-post span {
+    cursor: pointer;
+}
+
+.uploadImage {
+    display: none;
+}

@@ -1,4 +1,6 @@
+import { Feed } from "../Feed/Feed"
 import style from "./Dashboard.module.css"
+
 export const Dashboard = () => {
 
     return (
@@ -6,8 +8,8 @@ export const Dashboard = () => {
             <aside className={`${style["sideNav"]}`}>
                 sideNav
             </aside>
-            <main classname={style["user-feed"]}>
-                hello world
+            <main className={style["user-feed"]}>
+                <Feed />
             </main>
             <aside className={`${style["suggestions"]}`}>
                 suggestions

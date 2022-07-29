@@ -15,11 +15,11 @@ export const Login = () => {
         </p>
         <div className="form">
           <div className="form-group">
-            <label for = "username">Username:</label>
+            <label htmlFor = "username">Username:</label>
             <input type="text" placeholder="Username" name="username" value = { username } onChange = { e => setUsername(e.target.value) } required />
           </div>
           <div className="form-group">
-            <label for = "password">Password</label>
+            <label htmlFor = "password">Password</label>
             <input type="password" placeholder="Password" name="password" minLength="6" value = { password } onChange = { e => setPassword(e.target.value) } />
           </div>
           <button className="btn btn-primary" onClick = { () => getCredentials() } >Log In</button>
