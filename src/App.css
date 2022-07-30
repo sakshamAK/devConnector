@@ -44,6 +44,10 @@ img {
   margin-bottom: 3rem;
 }
 
+.d-block {
+  display: block;
+}
+
 /* Text Styles*/
 .x-large {
   font-size: 4rem;

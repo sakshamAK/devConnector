@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@giphy/js-fetch-api": "^4.3.1",
+    "@giphy/react-components": "^5.13.1-alpha.0",
     "dayjs": "^1.11.4",
+    "emoji-picker-react": "^3.6.0",
     "jwt-decode": "^3.1.2",
     "jwt-encode": "^1.0.1",
     "miragejs": "^0.1.45",
