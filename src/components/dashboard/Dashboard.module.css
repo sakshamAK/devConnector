@@ -1,7 +1,7 @@
 .dashboard-container {
     display: grid;
     grid-template-areas: "sidemenu feed suggestions";
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 30% 40% 30%;
     text-align: center;
 }
 

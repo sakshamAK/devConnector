@@ -21,6 +21,7 @@
     display: flex;
     gap: 1rem;
     align-self: flex-start;
+    width: 100%;
 }
 
 .add-to-post span {
@@ -53,4 +54,17 @@
     font-size: 1rem;
     padding: 0.1rem;
     cursor: pointer;
+}
+
+.emoji-picker {
+    position: absolute;
+    left: 42%;
+}
+
+.post-btn {
+    background: var(--primary-color);
+    padding: 0.1rem 1.6rem;
+    border: none;
+    color: var(--light-color);
+    margin-left: auto;
 }

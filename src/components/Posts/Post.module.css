@@ -1,0 +1,36 @@
+.post-container {
+    display: flex;
+    padding: 1rem 0;
+    width: 100%;
+}
+
+.profile img {
+    border-radius: 999px;
+}
+
+.profile {
+    flex-shrink: 0;
+}
+
+
+.post-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-left: 1rem;
+    justify-content: flex-start;
+    text-align: left;
+    flex-shrink: 1;
+}
+
+.profile-info {
+    font-size: 0.8rem;
+}
+
+.fullname {
+    font-weight: bold;
+}
+
+.username {
+    color: gray;
+}
