@@ -9,8 +9,7 @@ import { formatDate } from "../utils/authUtils";
 export const posts = [
   {
     _id: uuid(),
-    profileImage:"https://picsum.photos/40/40",
-    fullname: "adarsh balika",
+    fullname: "Adarsh Balika",
     content:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, ",
     likes: {
@@ -44,8 +43,7 @@ export const posts = [
   },
   {
     _id: uuid(),
-    profileImage:"https://picsum.photos/40/40",
-    fullname: "shubham soni",
+    fullname: "Shubham Soni",
     content:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident",
     likes: {

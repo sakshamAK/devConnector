@@ -9,7 +9,7 @@ export const Feed = () => {
     <>
       <CreatePost />
       <h3 className={style["feed-heading"]}>New Feed</h3>
-      {posts?.map(({ content, profileImage, username, fullname }) => <Post name={fullname} username={username} pp={profileImage} content={content} />)}
+      {posts.map(({ content, profileImage, username, fullname }) => <Post name={fullname} username={username} pp={profileImage} content={content} />)}
     </>
   )
 }

@@ -21,6 +21,7 @@
     justify-content: flex-start;
     text-align: left;
     flex-shrink: 1;
+    width: 100%;
 }
 
 .profile-info {
@@ -32,5 +33,16 @@
 }
 
 .username {
+    color: gray;
+}
+
+.react-to-post {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.react-to-post i {
+    font-size: 1.3rem;
     color: gray;
 }
