@@ -191,8 +191,8 @@ export const upvotePostCommentHandler = function (schema, request) {
         }
       );
     }
-    const post = schema.posts.findBy({ _id: postId }).attrs;
     const { postId, commentId } = request.params;
+    const post = schema.posts.findBy({ _id: postId }).attrs;
     const commentIndex = post.comments.findIndex(
       (comment) => comment._id === commentId
     );
