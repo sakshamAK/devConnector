@@ -8,13 +8,15 @@ import {
   Container,
   Button,
   Link,
-  Text
+  Text,
+  useColorModeValue
 } from '@chakra-ui/react'
 import { useAuth } from "../context/AuthContext";
 import { Toaster } from "react-hot-toast";
 
 export const Login = () => {
   const { loginUser, loginPass, setLoginUser, setLoginPass, setLoginCreds } = useAuth();
+  const color = useColorModeValue("brand.pr.500", "brand.pr.dark")
   return (
     <>
     <Toaster />
@@ -38,7 +40,7 @@ export const Login = () => {
 
         <Button colorScheme='brand.pr' onClick = {() => setLoginCreds()}>Sign in</Button>
         <Text mt={5} fontSize='md'>Don't have an account?
-          <Link as={ReactLink} to='/register' color="brand.pr.500"> Sign up</Link>
+          <Link as={ReactLink} to='/register' color={color}> Sign up</Link>
         </Text>
       </Container>
     </>

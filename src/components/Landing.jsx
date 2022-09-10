@@ -30,7 +30,7 @@ export const Landing = () => {
         <Text fontSize='2xl' color="brand.light">Create a developer profile/portfolio, share posts and get help from other developers</Text>
       </Flex>
       <Flex gap="2rem">
-        <Link as={ReactLink} to="/register" background="brand.pr" py={1.5} px={4} color="brand.light">
+        <Link as={ReactLink} to="/register" background="brand.pr.500" py={1.5} px={4} color="brand.light">
           Sign Up
         </Link>
         <Link as={ReactLink} to="/login" background="brand.light" py={1.5} px={4}>

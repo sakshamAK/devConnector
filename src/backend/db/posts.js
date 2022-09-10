@@ -10,6 +10,7 @@ export const posts = [
   {
     _id: uuid(),
     fullname: "Adarsh Balika",
+    profileSrc:"https://picsum.photos/400/400",
     content:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, ",
     likes: {
@@ -44,6 +45,7 @@ export const posts = [
   {
     _id: uuid(),
     fullname: "Shubham Soni",
+    profileSrc:"https://picsum.photos/400/400",
     content:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident",
     likes: {

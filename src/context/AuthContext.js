@@ -81,7 +81,9 @@ const AuthProvider = ({ children }) => {
 
         try {
             const { data } = await axios.post("/api/auth/login", { username, password });
+            console.log(data)
             localStorage.setItem("token", data.encodedToken);
+            localStorage.setItem("id", data.foundUser._id);
             setAuth(true);
             navigate("/dashboard");
         }

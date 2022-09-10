@@ -1,4 +1,4 @@
-import { Feed } from "../Feed/Feed"
+import { Feed } from "../"
 import style from "./Dashboard.module.css"
 
 export const Dashboard = () => {
