@@ -14,8 +14,8 @@ import {
 } from "@chakra-ui/react"
 
 export const CreatePost = () => {
-    const { src, getEmoji, postText, setPostText, setSrc, uploadPost, resetPost, name } = usePost();
-    const { creds: { profileSrc, firstName } } = useAuth();
+    const { src, getEmoji, postText, setPostText, setSrc, uploadPost, resetPost } = usePost();
+    const { creds: { profileSrc } } = useAuth();
     const [toggleDisplay, setDisplay] = useState("none");
     const toggleEmoji = () => toggleDisplay === "none" ? setDisplay("block") : setDisplay("none");
 
