@@ -1,9 +1,6 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import { Navbar } from './components/Navbar/Navbar';
-import { Landing } from './components/Landing/Landing';
-import { Login } from './components/Login/Login';
-import { Register } from './components/Register/Register';
+import { Navbar, Landing, Login, Register } from './components/';
 import { Dashboard } from './components/dashboard/Dashboard';
 import Mockman from "mockman-js";
 import { PrivateRoute } from './PrivateRoute';
