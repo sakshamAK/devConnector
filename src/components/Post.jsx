@@ -7,12 +7,17 @@ import {
 } from "@chakra-ui/react"
 import { useState } from "react";
 import { Carousel } from "react-responsive-carousel"
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 
 
 export const Post = ({ name, username, content, pp, src }) => {
     const [display, setDisplay] = useState("none");
+    
+    const showComments = () => {
+        
+    }
+
     return (
         <Flex py="1rem" width="100%">
             <Box flexShrink="0">
@@ -30,7 +35,6 @@ export const Post = ({ name, username, content, pp, src }) => {
                 <Box fontSize="0.8rem">
                     <Text as="b">{name}</Text> <Text display="inline" color="gray">@{username} • 1m</Text>
                     <Text>{content}</Text>
-                    {console.log(src && "hell")}
                     <Flex
                         gap="0.1rem"
                         my="1rem"
@@ -63,10 +67,35 @@ export const Post = ({ name, username, content, pp, src }) => {
                             </Square>}
                     </Flex>
                     <Flex my="1rem" justifyContent="space-between">
-                        <Text as="i" className="material-symbols-outlined">favorite_border</Text>
-                        <Text as="i" className="material-symbols-outlined">chat_bubble</Text>
-                        <Text as="i" className="material-symbols-outlined">share</Text>
-                        <Text as="i" className="material-symbols-outlined">bookmark</Text>
+                        <Text
+                            cursor="pointer"
+                            as="i"
+                            className="material-symbols-outlined"
+                        >
+                            favorite_border
+                        </Text>
+                        <Text
+                            cursor="pointer"
+                            as="i"
+                            className="material-symbols-outlined"
+                            onClick={showComments()}
+                        >
+                            chat_bubble
+                        </Text>
+                        <Text
+                            cursor="pointer"
+                            as="i"
+                            className="material-symbols-outlined"
+                        >
+                            share
+                        </Text>
+                        <Text
+                            cursor="pointer"
+                            as="i"
+                            className="material-symbols-outlined"
+                        >
+                            bookmark
+                        </Text>
                     </Flex>
                 </Box>
             </Flex>

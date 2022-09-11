@@ -18,11 +18,9 @@ const PostProvider = ({ children }) => {
 
     const uploadPost = async postData => {
         const token = localStorage.getItem("token");
-        console.log(postData);
         try {
             const headers = { headers: { authorization: token } }
             const { data: { posts } } = await axios.post("/api/posts", { postData }, headers)
-            console.log(posts);
             setPosts(posts);
             setPostText("");
             setSrc([]);

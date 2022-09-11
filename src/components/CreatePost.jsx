@@ -1,7 +1,5 @@
 import { usePost } from '../context/PostContext';
-import { useState } from 'react';
-import Picker from 'emoji-picker-react';
-import { useAuth } from "../context/AuthContext"
+import { useState, lazy } from 'react';
 import axios from "axios";
 import {
     Box,
@@ -12,10 +10,11 @@ import {
     Square,
     Button,
 } from "@chakra-ui/react"
+const Picker = lazy(() => import('emoji-picker-react'));
 
 export const CreatePost = () => {
     const { src, getEmoji, postText, setPostText, setSrc, uploadPost, resetPost } = usePost();
-    const { creds: { profileSrc } } = useAuth();
+    const profileSrc = JSON.parse(localStorage.getItem("user"));
     const [toggleDisplay, setDisplay] = useState("none");
     const toggleEmoji = () => toggleDisplay === "none" ? setDisplay("block") : setDisplay("none");
 

@@ -4,7 +4,6 @@ import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter } from "react-router-dom";
-import { AuthProvider } from "./context/AuthContext";
 import { PostProvider } from "./context/PostContext";
 import { store } from "./Redux/Store";
 import { Provider } from "react-redux/"
@@ -21,13 +20,11 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <AuthProvider>
           <PostProvider>
             <ChakraProvider theme={theme}>
               <App />
             </ChakraProvider>
           </PostProvider>
-        </AuthProvider>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>);
