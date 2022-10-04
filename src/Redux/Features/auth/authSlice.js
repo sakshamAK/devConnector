@@ -49,6 +49,10 @@ export const signupHandler = createAsyncThunk(
 
 const initialState = {
     token: localStorage.getItem("token") || null,
+    userInfo: localStorage.getItem("user") || null,
+    auth: false,
+    loading: false,
+    signupSuccess: false
 }
 
 const authSlice = createSlice({
@@ -58,9 +62,30 @@ const authSlice = createSlice({
         registerUser: (state, action) => state = action.payload
     },
     extraReducers: {
-        [loginHandler.pending]: console.log("pending"),
-        [loginHandler.fulfilled]: console.log("fulfilled"),
-        [loginHandler.rejected]: console.log("rejected"),
+        [loginHandler.pending]: (state, payload) => {
+            state.loading = true;
+            state.auth = false;
+        },
+        [loginHandler.fulfilled]: (state, payload) => {
+            state.loading = false;
+            state.auth = true;
+        },
+        [loginHandler.rejected]: (state, payload) => {
+            state.loading = false;
+            state.auth = false;
+        },
+        [signupHandler.pending]: (state, payload) => {
+            state.loading = true;
+            state.signupSuccess = false;
+        },
+        [signupHandler.fulfilled]: (state, payload) => {
+            state.loading = false;
+            state.signupSuccess = true;
+        },
+        [signupHandler.rejected]: (state, payload) => {
+            state.loading = false;
+            state.signupSuccess = false;
+        }
     }
 })
 

@@ -1,4 +1,4 @@
-import { Link as ReactLink } from "react-router-dom"
+import { Link as ReactLink, useNavigate } from "react-router-dom"
 import {
   FormControl,
   FormLabel,
@@ -13,11 +13,12 @@ import {
 } from '@chakra-ui/react'
 import { Toaster } from "react-hot-toast";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginHandler } from "../Redux/Features/auth/authSlice";
+import { useEffect } from "react";
 
 export const Login = () => {
-  const [login, setLogin] = useState({ input: {username: "", password: ""} })
+  const [login, setLogin] = useState({ input: { username: "", password: "" } })
   const dispatch = useDispatch();
 
   const setCreds = e => {
@@ -34,6 +35,14 @@ export const Login = () => {
   }
 
   const color = useColorModeValue("brand.pr.500", "brand.pr.dark")
+
+  const { auth } = useSelector(state => state.auth);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (auth) navigate("/dashboard");
+  }, [auth])
+
   return (
     <>
       <Toaster />
@@ -42,7 +51,7 @@ export const Login = () => {
         <Heading as="h5" size="lg" my={5}>
           Sign into Your Account
         </Heading>
-      
+
         <FormControl mt={5}>
           <FormLabel>Username</FormLabel>
           <FormHelperText>Enter your username</FormHelperText>

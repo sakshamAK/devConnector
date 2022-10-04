@@ -3,19 +3,24 @@ import {
     Flex,
     Image,
     Square,
-    Text
+    Text,
+    useDisclosure
 } from "@chakra-ui/react"
 import { useState } from "react";
 import { Carousel } from "react-responsive-carousel"
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { ScaleFadeEx } from "./CommentBox";
 
 
 
 export const Post = ({ name, username, content, pp, src }) => {
     const [display, setDisplay] = useState("none");
-    
-    const showComments = () => {
-        
+    const [isOpen, setOpen] = useState("none");
+
+    const onToggle = e => {
+        console.log(e.currentTarget)
+        if(e.target !== e.currentTarget) return
+        else isOpen === "none" ? setOpen("block") : setOpen("none")
     }
 
     return (
@@ -78,7 +83,7 @@ export const Post = ({ name, username, content, pp, src }) => {
                             cursor="pointer"
                             as="i"
                             className="material-symbols-outlined"
-                            onClick={showComments()}
+                            onClick={e => onToggle(e)}
                         >
                             chat_bubble
                         </Text>
@@ -99,6 +104,10 @@ export const Post = ({ name, username, content, pp, src }) => {
                     </Flex>
                 </Box>
             </Flex>
+            <ScaleFadeEx
+                isOpen={isOpen}
+                onToggle={onToggle}
+            />
             {
                 <Flex
                     position="fixed"

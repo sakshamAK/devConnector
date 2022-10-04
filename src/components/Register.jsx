@@ -1,4 +1,4 @@
-import { Link as ReactLink } from "react-router-dom"
+import { Link as ReactLink, useNavigate } from "react-router-dom"
 import {
   FormControl,
   FormLabel,
@@ -14,13 +14,13 @@ import {
   Text
 } from '@chakra-ui/react';
 import { Toaster } from "react-hot-toast";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { signupHandler } from "../Redux/Features/auth/authSlice";
 
 
 export const Register = () => {
-  const [signup, setSignup] = useState({ input: {} })
+  const [signup, setSignup] = useState({ input: {profileSrc: "https://gravatar.com/avatar/"} })
   const dispatch = useDispatch();
 
   const setCreds = (e) => {
@@ -33,6 +33,13 @@ export const Register = () => {
       }
     })
   }
+
+  const navigate = useNavigate();
+  const { signupSuccess } = useSelector(state => state.auth);
+
+  useEffect(() => {
+    if(signupSuccess) navigate("/login")
+  }, [signupSuccess])
 
   return (
     <>

@@ -1,6 +1,4 @@
-import { usePost } from '../context/PostContext';
-import { useState, lazy } from 'react';
-import axios from "axios";
+import { lazy } from 'react';
 import {
     Box,
     Flex,
@@ -8,41 +6,42 @@ import {
     Textarea,
     Input,
     Square,
-    Button,
 } from "@chakra-ui/react"
+import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { uploadPost } from '../Redux/Features/posts/postSlice';
+
 const Picker = lazy(() => import('emoji-picker-react'));
 
 export const CreatePost = () => {
-    const { src, getEmoji, postText, setPostText, setSrc, uploadPost, resetPost } = usePost();
-    const profileSrc = JSON.parse(localStorage.getItem("user"));
+    const dispatch = useDispatch();
+    const { token } = useSelector(state => state.auth);
+    const { profileSrc, firstName, lastName } = JSON.parse(localStorage.getItem("user"));
+    const [textContent, setContent] = useState("");
     const [toggleDisplay, setDisplay] = useState("none");
+    const [imgSrc, setImgSrc] = useState([]);
+
     const toggleEmoji = () => toggleDisplay === "none" ? setDisplay("block") : setDisplay("none");
+    const getEmoji = (event, emojiObject) => setContent(prev => prev + emojiObject.emoji);
+    const deleteImage = (srcItem) => setImgSrc(imgSrc.filter(item => item !== srcItem));
 
-    const username = async () => {
-        try {
-
-            const { data: { users } } = await axios.get("/api/users");
-            const username = users.find(item => item._id === localStorage.getItem("id"));
-            const fullname = await username.firstName + " " + username.lastName;
-            return fullname;
-        }
-        catch (err) {
-            console.error(err)
-        }
-    }
-
-    let postData = {};
-    username().then(item => {
-        postData = {
+    const sendData = (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target)
+        formData.append('src', [])
+        
+        let data = Object.fromEntries(formData);
+        imgSrc.map(item => data = { ...data, src: [...data.src, item] })
+        
+        const postData = {
+            ...data,
             profileSrc,
-            src,
-            content: postText,
-            fullname: item
-        }
-    })
+            fullName: firstName + lastName
+        };
+        console.log(postData)
 
-    const deleteImage = (srcItem) => {
-        setSrc(src.filter(item => item !== srcItem));
+        dispatch(uploadPost({ postData, token }));
+        setImgSrc([])
     }
 
     return (
@@ -56,27 +55,27 @@ export const CreatePost = () => {
                     borderRadius='full'
                 />
                 <Flex width="100%" flexDirection="column">
-                    <Box width="100%">
-                        <Textarea background="white" outline="none" cols="5" rows="8" mb="0.3rem" value={postText} onChange={e => setPostText(e.target.value)}></Textarea>
-                        <Flex flexDirection="column" alignItems="center">
-                            <Flex gap="1rem" alignSelf="flex-start" width="100%" alignItems="flex-start">
-                                <form>
-                                    <Input type="file" accept="video/*, image/*" capture="environment" multiple id="uploadImage" display="none" onChange={e => setSrc(e.target.files && Object.values(e.target.files).map(item => URL.createObjectURL(item)))} onClick={resetPost()} />
+                    <form onSubmit={e => sendData(e)}>
+                        <Box width="100%">
+                            <Textarea background="white" name="content" outline="none" cols="5" rows="8" mb="0.3rem" value={textContent} onChange={e => setContent(e.target.value)}></Textarea>
+                            <Flex flexDirection="column" alignItems="center">
+                                <Flex gap="1rem" alignSelf="flex-start" width="100%" alignItems="flex-start">
+                                    <Input type="file" accept="video/*, image/*" capture="environment" multiple id="uploadImage" display="none" onChange={e => { setImgSrc(Object.values(e.target.files).map(item => URL.createObjectURL(item))) }} onClick={() => setImgSrc([])} />
                                     <label htmlFor="uploadImage">
                                         <Square cursor="pointer" className="material-symbols-outlined">image</Square>
                                     </label>
-                                </form>
-                                <Square cursor="pointer" className="material-symbols-outlined">gif_box</Square>
-                                <Square cursor="pointer" className="material-symbols-outlined" onClick={toggleEmoji}>sentiment_satisfied</Square>
-                                <Button onClick={() => uploadPost(postData)} colorScheme="brand.pr" ml="auto" px="1.5rem" py="0.5rem" height="auto" >Post</Button>
-                                <Box display={toggleDisplay} position="absolute" left="45%">
-                                    <Picker onEmojiClick={getEmoji} />
-                                </Box>
+                                    <Square cursor="pointer" className="material-symbols-outlined">gif_box</Square>
+                                    <Square cursor="pointer" className="material-symbols-outlined" onClick={toggleEmoji}>sentiment_satisfied</Square>
+                                    <Input type="submit" name="post" value="Post" background="brand.pr.500" color="white" ml="auto" px="1.5rem" py="0.5rem" width="min-content" />
+                                    <Box position="absolute" left="50%" display={toggleDisplay}>
+                                        <Picker onEmojiClick={getEmoji} />
+                                    </Box>
+                                </Flex>
                             </Flex>
-                        </Flex>
-                    </Box>
+                        </Box>
+                    </form>
                     <Flex gap="1rem">
-                        {src?.map((item) => (
+                        {imgSrc?.map((item) => (
                             <Flex flexDirection="column" alignItems="center">
                                 <Square
                                     className="material-icons"
