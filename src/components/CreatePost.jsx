@@ -9,7 +9,8 @@ import {
 } from "@chakra-ui/react"
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import { uploadPost } from '../Redux/Features/posts/postSlice';
+import { getPosts, uploadPost } from '../Redux/Features/posts/postSlice';
+import { useEffect } from 'react';
 
 const Picker = lazy(() => import('emoji-picker-react'));
 
@@ -29,19 +30,19 @@ export const CreatePost = () => {
         e.preventDefault();
         const formData = new FormData(e.target)
         formData.append('src', [])
-        
+
         let data = Object.fromEntries(formData);
-        imgSrc.map(item => data = { ...data, src: [...data.src, item] })
-        
+        imgSrc.length === 0 ? data = { ...data, src: [] } : imgSrc.map(item => data = { ...data, src: [...data.src, item] })
+
         const postData = {
             ...data,
             profileSrc,
             fullName: firstName + lastName
         };
-        console.log(postData)
 
         dispatch(uploadPost({ postData, token }));
-        setImgSrc([])
+        setImgSrc([]);
+        setContent("");
     }
 
     return (
@@ -57,7 +58,7 @@ export const CreatePost = () => {
                 <Flex width="100%" flexDirection="column">
                     <form onSubmit={e => sendData(e)}>
                         <Box width="100%">
-                            <Textarea background="white" name="content" outline="none" cols="5" rows="8" mb="0.3rem" value={textContent} onChange={e => setContent(e.target.value)}></Textarea>
+                            <Textarea resize="none" background="white" name="content" outline="none" cols="5" rows="8" mb="0.3rem" value={textContent} onChange={e => setContent(e.target.value)}></Textarea>
                             <Flex flexDirection="column" alignItems="center">
                                 <Flex gap="1rem" alignSelf="flex-start" width="100%" alignItems="flex-start">
                                     <Input type="file" accept="video/*, image/*" capture="environment" multiple id="uploadImage" display="none" onChange={e => { setImgSrc(Object.values(e.target.files).map(item => URL.createObjectURL(item))) }} onClick={() => setImgSrc([])} />

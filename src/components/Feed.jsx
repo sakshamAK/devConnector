@@ -17,7 +17,7 @@ export const Feed = () => {
       <CreatePost />
       <h1 onClick={() => dispatch(getPosts())}>clickme</h1>
       <Heading as="h6" size="md" mt="1rem" alignSelf="flex-start">New Feed</Heading>
-      {loading ? <h1>Loading...</h1> : posts?.map(({ content, profileSrc, username, fullname, src }) => <Post name={fullname} username={username} pp={profileSrc} content={content} src={src} />)}
+      {loading ? <h1>Loading...</h1> : posts?.map(({ content, profileSrc, username, fullname, src, _id }) => <Post key={_id} name={fullname} username={username} pp={profileSrc} content={content} src={src} _id={_id} />)}
     </>
   )
 }

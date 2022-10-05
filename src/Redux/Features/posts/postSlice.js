@@ -9,7 +9,7 @@ export const getPosts = createAsyncThunk(
             const { data } = await axios.get("/api/posts");
             return data.posts;
         }
-        catch(err) {
+        catch (err) {
             console.error(err.response);
             return rejectWithValue([], false);
         }
@@ -20,17 +20,17 @@ export const uploadPost = createAsyncThunk(
     "post/uploadPost",
     async (args, { rejectWithValue }) => {
         try {
-            
+
             const { postData, token } = args;
             const headers = {
                 headers: { authorization: token }
             }
+            console.table(postData)
+            const { data } = await axios.post("/api/posts", { postData }, headers)
 
-            const { data } = await axios.post("/api/posts", postData, headers )
-            
             return data.posts;
         }
-        catch(err) {
+        catch (err) {
             console.error(err.response);
             return rejectWithValue([], "error occured try again");
         }
@@ -72,4 +72,3 @@ const postSlice = createSlice({
 })
 
 export default postSlice.reducer;
-// export const { sendSrc, sendText } = postSlice.actions;
