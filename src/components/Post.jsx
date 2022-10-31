@@ -6,10 +6,14 @@ import {
     Text,
 } from "@chakra-ui/react"
 import { useState } from "react";
+import { Toaster } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { Carousel } from "react-responsive-carousel"
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { useLocation } from "react-router-dom";
 import { getComments } from "../Redux/Features/posts/commentSlice";
+import { deletePost } from "../Redux/Features/posts/postSlice";
+import { clipboard } from "../Services/clipboard";
 import { ScaleFadeEx } from "./CommentBox";
 
 
@@ -17,18 +21,25 @@ import { ScaleFadeEx } from "./CommentBox";
 export const Post = ({ name, username, content, pp, src, _id }) => {
     const [display, setDisplay] = useState("none");
     const [isOpen, setOpen] = useState("none");
-    const dispatch = useDispatch();
+    const [shareOptDisplay, setShareOptDisplay] = useState("none");
+    const { token } = useSelector(state => state.auth);
     const { posts } = useSelector(state => state.post);
+    const { username: loggedInUser } = JSON.parse(localStorage.getItem("user")) || "";
     const singlePost = posts.find(item => item._id === _id);
+    const dispatch = useDispatch();
+    const location = useLocation();
 
-    const onToggle = e => {
+    const onToggleComment = e => {
         if (e.target !== e.currentTarget) return
         else isOpen === "none" ? setOpen("block") : setOpen("none")
     }
 
-
     return (
         <Flex py="1rem" width="100%">
+            <Toaster
+                position="bottom-center"
+                reverseOrder={false}
+            />
             <Box flexShrink="0">
                 <Image height="2.5rem" width="2.5rem" src={pp} alt="username" borderRadius="full" />
             </Box>
@@ -75,7 +86,7 @@ export const Post = ({ name, username, content, pp, src, _id }) => {
                                 add_circle
                             </Square>}
                     </Flex>
-                    <Flex my="1rem" justifyContent="space-between">
+                    <Flex my="1rem" justifyContent="space-between" position="relative">
                         <Text
                             cursor="pointer"
                             as="i"
@@ -87,7 +98,9 @@ export const Post = ({ name, username, content, pp, src, _id }) => {
                             cursor="pointer"
                             as="i"
                             className="material-symbols-outlined"
-                            onClick={e => { onToggle(e); dispatch(getComments({ _id })) }}
+                            onClick={e => { onToggleComment(e); dispatch(getComments({ _id })) }}
+                            onKeyDown={e => e.key === "Escape" && setOpen("none")}
+                            tabIndex={0}
                         >
                             chat_bubble
                         </Text>
@@ -95,9 +108,45 @@ export const Post = ({ name, username, content, pp, src, _id }) => {
                             cursor="pointer"
                             as="i"
                             className="material-symbols-outlined"
+                            onClick={() => shareOptDisplay === "none" ? setShareOptDisplay("block") : setShareOptDisplay("none")}
                         >
                             share
                         </Text>
+                        <Flex
+                            flexDirection="column"
+                            gap="4"
+                            position="absolute"
+                            display={shareOptDisplay}
+                            top="-2rem"
+                            right="2rem"
+                            justifyContent="center"
+                            py="1"
+                            px="2"
+                            background="white"
+                            boxShadow="0 0 5px lightgray"
+                        >
+                            {username === loggedInUser &&
+                                <Flex
+                                    py="1"
+                                    px="4"
+                                    gap="2"
+                                    cursor="pointer"
+                                    onClick={() => dispatch(deletePost({ _id, token }))}
+                                >
+                                    <Text className="material-symbols-outlined">delete</Text>
+                                    <Text as="b">Delete</Text>
+                                </Flex>
+                            }
+                            <Flex
+                                cursor="pointer"
+                                py="1"
+                                px="4"
+                                gap="2"
+                                onClick={() => clipboard(location.pathname)}
+                            >
+                                <Text className="material-symbols-outlined">content_copy</Text><Text as="b">Copy</Text>
+                            </Flex>
+                        </Flex>
                         <Text
                             cursor="pointer"
                             as="i"
@@ -110,7 +159,7 @@ export const Post = ({ name, username, content, pp, src, _id }) => {
             </Flex>
             <ScaleFadeEx
                 isOpen={isOpen}
-                onToggle={onToggle}
+                onToggle={onToggleComment}
                 _id={_id}
                 post={singlePost}
             />

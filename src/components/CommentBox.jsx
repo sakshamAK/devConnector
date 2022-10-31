@@ -23,6 +23,9 @@ export const ScaleFadeEx = ({ isOpen, onToggle, _id, post }) => {
                 width="100vw"
                 height="100vh"
                 overflowY="scroll"
+                zIndex={1}
+                onKeyDown={e => e.key === "Escape" && onToggle(e)}
+                tabIndex={0}
             >
                 <Box
                     py="1rem"
@@ -31,17 +34,18 @@ export const ScaleFadeEx = ({ isOpen, onToggle, _id, post }) => {
                     m="auto"
                     maxWidth="40rem"
                     borderRadius="1rem"
-                // onClick={() => console.log(_id, singlePost)}
                 >
-                    <CommentPost name={fullname} username={username} pp={profileSrc} content={content} src={src} borderBottom="1px solid gray"/>
+                    <CommentPost name={fullname} username={username} pp={profileSrc} content={content} src={src} borderBottom="1px solid gray" />
                     {
                         loading ?
                             <p>loading...</p> :
-                            comments.map(({ _id, fullname, profileSrc, username, text }) => (
-                                <CommentPost key={_id} name={fullname} username={username} pp={profileSrc} content={text}  fSize="1.1rem" lheight="1rem"/>
-                            ))
+                            comments ?
+                                comments.map(({ _id, fullname, profileSrc, username, text }) => (
+                                    <CommentPost key={_id} name={fullname} username={username} pp={profileSrc} content={text} fSize="1.1rem" lheight="1rem" />
+                                )) :
+                                <h3>No Comments</h3>
                     }
-                    <ReplyBox _id={_id}/>
+                    <ReplyBox _id={_id} />
                 </Box>
             </Box>
         </>

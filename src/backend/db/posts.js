@@ -10,7 +10,7 @@ export const posts = [
   {
     _id: uuid(),
     fullname: "Adarsh Balika",
-    profileSrc: "https://picsum.photos/400/400",
+    profileSrc: "https://picsum.photos/50/50",
     content:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, ",
     likes: {
@@ -25,7 +25,7 @@ export const posts = [
       {
         _id: uuid(),
         username: "shubhamsoni",
-        profileSrc: "https://picsum.photos/400/400",
+        profileSrc: "https://picsum.photos/50/50",
         fullname: "Shubham Soni",
         text: "Interesting",
         votes: {
@@ -35,7 +35,7 @@ export const posts = [
       },
       {
         _id: uuid(),
-        profileSrc: "https://picsum.photos/400/400",
+        profileSrc: "https://picsum.photos/50/50",
         fullname: "Soham Shah",
         username: "sohamshah",
         text: "Wow!",
@@ -49,7 +49,7 @@ export const posts = [
   {
     _id: uuid(),
     fullname: "Shubham Soni",
-    profileSrc: "https://picsum.photos/400/400",
+    profileSrc: "https://picsum.photos/50/50",
     content:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident",
     likes: {
@@ -63,7 +63,7 @@ export const posts = [
       {
         _id: uuid(),
         fullname: "Shubham Soni",
-        profileSrc: "https://picsum.photos/400/400",
+        profileSrc: "https://picsum.photos/50/50",
         username: "shubhamsoni",
         text: "Interesting",
         votes: {
@@ -74,7 +74,7 @@ export const posts = [
       {
         _id: uuid(),
         fullname: "Soham Shah",
-        profileSrc: "https://picsum.photos/400/400",
+        profileSrc: "https://picsum.photos/50/50",
         username: "sohamshah",
         text: "Wow!",
         votes: {
@@ -85,7 +85,7 @@ export const posts = [
       {
         _id: uuid(),
         fullname: "Saksham Ak",
-        profileSrc: "https://picsum.photos/400/400",
+        profileSrc: "https://picsum.photos/50/50",
         username: "sakshamak",
         text: "This is so cool!",
         votes: {

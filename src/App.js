@@ -4,6 +4,7 @@ import { Navbar, Landing, Login, Register } from './components/';
 import { Dashboard } from './components/dashboard/Dashboard';
 import Mockman from "mockman-js";
 import { PrivateRoute } from './PrivateRoute';
+import { MyProfile } from './components/MyProfile';
 
 function MockAPI() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/mockman" element={MockAPI()} />
         <Route element={<PrivateRoute />} >
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/myProfile" element={<MyProfile />} />
         </Route>
       </Routes>
     </>

@@ -11,12 +11,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { getPosts, uploadPost } from '../Redux/Features/posts/postSlice';
 import { useEffect } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Picker = lazy(() => import('emoji-picker-react'));
 
 export const CreatePost = () => {
     const dispatch = useDispatch();
-    const { token } = useSelector(state => state.auth);
+    const token = localStorage.getItem("token");
     const { profileSrc, firstName, lastName } = JSON.parse(localStorage.getItem("user"));
     const [textContent, setContent] = useState("");
     const [toggleDisplay, setDisplay] = useState("none");
@@ -40,9 +41,19 @@ export const CreatePost = () => {
             fullName: firstName + lastName
         };
 
-        dispatch(uploadPost({ postData, token }));
-        setImgSrc([]);
-        setContent("");
+        if (postData.content) {
+            if (postData.content.length < 250) {
+                dispatch(uploadPost({ postData, token }))
+                setImgSrc([]);
+                setContent("");
+            }
+            else {
+                toast.error(`Length is ${postData.content.length} characters, must be less than 60`)
+            }
+        }
+        else {
+            toast.error('Empty Field!');
+        }
     }
 
     return (
@@ -51,7 +62,7 @@ export const CreatePost = () => {
                 <Image
                     src={profileSrc}
                     height="3rem"
-                    width="auto"
+                    width="3rem"
                     alt="User Profile"
                     borderRadius='full'
                 />

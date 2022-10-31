@@ -1,12 +1,16 @@
 import { Feed } from "../"
 import style from "./Dashboard.module.css"
+import { SideNav } from "../SideNav"
+import { useLocation } from "react-router-dom"
 
 export const Dashboard = () => {
+    const location = useLocation();
+    // console.log(location)
     return (
         <>
-            <div className={`${style["dashboard-container"]} my-4 p-2`}>
+            <div className={`${style["dashboard-container"]} my-4`}>
                 <aside className={`${style["sideNav"]}`}>
-                    sideNav
+                    <SideNav />
                 </aside>
                 <main className={style["user-feed"]}>
                     <Feed />
